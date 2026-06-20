@@ -1,0 +1,20 @@
+app = "chromium-vnc"
+
+primary_region = "sin"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[[services]]
+  internal_port = 8080
+  protocol = "tcp"
+
+  [[services.ports]]
+    port = 80
+
+  [[services.ports]]
+    port = 443
+
+  [[services.tcp_checks]]
+    interval = "15s"
+    timeout = "2s"
