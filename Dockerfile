@@ -1,20 +1,12 @@
-FROM alpine:latest
+FROM debian:bookworm-slim
 
-RUN apk add --no-cache \
+RUN apt-get update && apt-get install -y \
     chromium \
     xvfb \
     x11vnc \
     fluxbox \
-    python3 \
-    py3-websockify \
+    novnc \
+    websockify \
     git \
-    bash
-
-RUN git clone https://github.com/novnc/noVNC.git /opt/noVNC
-
-COPY start.sh /start.sh
-RUN chmod +x /start.sh
-
-EXPOSE 8080
-
-CMD ["/start.sh"]
+    curl \
+    && rm -rf /var/lib/apt/lists/*
