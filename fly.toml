@@ -1,20 +1,15 @@
 app = "chromium-vnc"
 
-primary_region = "sin"
-
 [build]
   dockerfile = "Dockerfile"
 
-[[services]]
+[http_service]
   internal_port = 8080
-  protocol = "tcp"
+  force_https = true
+  auto_start_machines = true
+  auto_stop_machines = "stop"
 
-  [[services.ports]]
-    port = 80
-
-  [[services.ports]]
-    port = 443
-
-  [[services.tcp_checks]]
-    interval = "15s"
-    timeout = "2s"
+[[vm]]
+  memory = "1024mb"
+  cpu_kind = "shared"
+  cpus = 1
